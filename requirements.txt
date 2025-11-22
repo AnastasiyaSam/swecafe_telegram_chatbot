@@ -1,5 +1,1 @@
-schedule
 python-telegram-bot
-pytz
-python-dotenv
-tzdata

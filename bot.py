@@ -29,8 +29,8 @@ async def send_questionnaire(bot):
         print("Error: Bot Token or Chat ID is not configured.")
         return
 
-    question = "How are you feeling this week?"
-    options = ["🚀 Fantastic!", "😊 Good", "😐 Okay", "😕 A bit down", "🔥 On fire!"]
+    question = "Придете сегодня на кафе в 20.00 по Стокгольму?"
+    options = ["Да", "Нет"]
 
     try:
         print(f"Sending poll to chat ID: {CHAT_ID}")
@@ -87,7 +87,7 @@ def main():
         asyncio.run(send_questionnaire(bot))
 
     # Schedule the job to rusaturday at 13:00 (1:00 PM)
-    schedule.every().saturday.at("16:54").do(job)
+    schedule.every().wednesday.at("17:08").do(job)
     
     print("Job scheduledsaturday at 16:50 Stockholm time.")
     print("Waiting for the scheduled time...")

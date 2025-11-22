@@ -1,0 +1,50 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Lambda Function
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Create package directory
+        run: mkdir package
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -t ./package
+
+      - name: Copy Lambda function
+        run: cp bot_lambda.py ./package
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.0
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform Init
+        run: terraform -chdir=./terraform init
+
+      - name: Terraform Plan
+        run: terraform -chdir=./terraform plan -var="telegram_bot_token=${{ secrets.TELEGRAM_BOT_TOKEN }}" -var="telegram_chat_id=${{ secrets.TELEGRAM_CHAT_ID }}"
+
+      - name: Terraform Apply
+        run: terraform -chdir=./terraform apply -auto-approve -var="telegram_bot_token=${{ secrets.TELEGRAM_BOT_TOKEN }}" -var="telegram_chat_id=${{ secrets.TELEGRAM_CHAT_ID }}"
