@@ -5,7 +5,7 @@
 variable "aws_region" {
   description = "The AWS region to deploy resources in."
   type        = string
-  default     = "us-east-1"
+  default     = "eu-north-1"
 }
 
 # This block defines the Telegram bot token variable.
