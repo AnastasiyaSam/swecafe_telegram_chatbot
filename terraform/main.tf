@@ -48,7 +48,7 @@ resource "aws_lambda_function" "telegram_bot_lambda" {
   function_name = "telegram-bot-poll"
   role          = aws_iam_role.lambda_exec_role.arn
   handler       = "bot_lambda.lambda_handler"
-  runtime       = "python3.14"
+  runtime       = "python3.12"
   filename      = data.archive_file.lambda_zip.output_path
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
