@@ -1,4 +1,9 @@
-venv
-package
-*md
-.env 
+venv/
+__pycache__/
+.pytest_cache/
+terraform/.terraform/
+terraform/lambda.zip
+
+# Ignore the package directory created by the pipeline
+package/ 
+.env
