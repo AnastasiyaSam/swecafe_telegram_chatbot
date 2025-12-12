@@ -87,7 +87,7 @@ def main():
         asyncio.run(send_questionnaire(bot))
 
     # Schedule the job to rusaturday at 13:00 (1:00 PM)
-    schedule.every().wednesday.at("17:08").do(job)
+    schedule.every().wednesday.at("16:51").do(job)
     
     print("Job scheduledsaturday at 16:50 Stockholm time.")
     print("Waiting for the scheduled time...")

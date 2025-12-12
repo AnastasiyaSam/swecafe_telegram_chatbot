@@ -18,7 +18,7 @@ async def send_questionnaire_async():
 
     bot = telegram.Bot(token=BOT_TOKEN)
     question = "Придете сегодня на кафе в 20.00 по Стокгольму?"
-    options = ["Да", "Нет"]
+    options = ["Да", "Мне просто посмотреть"]
 
     try:
         print(f"Sending poll to chat ID: {CHAT_ID}")
